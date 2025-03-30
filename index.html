@@ -20,22 +20,22 @@
             background-color: black;
             color: white;
             text-align: center;
-            overflow: hidden; /* Prevents scrolling */
-            font-family: cursive; /* Cursive font applied to whole page */
+            overflow: hidden;
+            font-family: cursive;
         }
 
         .container {
             position: relative;
             width: 100%;
             max-width: 600px;
-            height: 80vh; /* Adjust height to fit within the screen */
-            display: none; /* Hide content until password is entered */
+            height: 80vh;
+            display: none;
         }
 
         img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures the image covers the container */
+            object-fit: cover;
             border-radius: 10px;
             display: block;
         }
@@ -49,7 +49,7 @@
             border-radius: 10px;
             width: 90%;
             max-width: 500px;
-            font-family: cursive; /* Cursive font applied */
+            font-family: cursive;
         }
 
         .message {
@@ -62,29 +62,26 @@
             bottom: 5%;
             font-size: 1.3em;
         }
+
+        /* 🎵 Hidden Audio Player */
+        .hidden-audio {
+            display: none; /* Hide initially */
+            width: 250px;
+            margin-top: 20px;
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
     </style>
-    <script>
-        window.onload = function () {
-            var password = prompt("Enter Password:");
-            if (password === "RiVani") { // Change this password
-                document.querySelector(".container").style.display = "block";
-            } else {
-                alert("Access Denied!");
-                window.location.href = "https://google.com"; // Redirect if wrong password
-            }
-        };
-    </script>
 </head>
 <body>
 
-     <!-- Audio for Background Music -->
- <audio id="bg-music" preload="auto" autoplay loop>
-    <source src="https://drive.google.com/uc?export=download&id=1DIRxMYX4hmun0fJKw5xaKcGaBI0Q2J3K" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
-
-
-
+    <!-- 🎵 Background Music (Hidden Initially) -->
+    <audio id="bg-music" class="hidden-audio" preload="auto" controls loop>
+        <source src="./jaanNisaar.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 
     <div class="container">
         <img src="./download (2).jpg" alt="Happy Anniversary">
@@ -98,6 +95,25 @@
             Together, we are strong enough to overcome the worst of the worst; alone, we struggle to find meaning.
         </div>
     </div>
+
+    <script>
+        window.onload = function () {
+            var password = prompt("Enter Password:");
+            if (password === "RiVani") { 
+                document.querySelector(".container").style.display = "block";
+                document.querySelector("#bg-music").style.display = "block"; // Show audio player
+
+                // 🎵 Music Play on First Click
+                document.body.addEventListener("click", function () {
+                    var audio = document.getElementById("bg-music");
+                    audio.play();
+                }, { once: true }); // Runs only once
+            } else {
+                alert("Access Denied!");
+                window.location.href = "https://google.com"; 
+            }
+        };
+    </script>
 
 </body>
 </html>
